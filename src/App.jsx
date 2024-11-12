@@ -33,6 +33,16 @@ export default function UserManagementApp() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    if (alert) {
+      const timer = setTimeout(() => {
+        setAlert(null);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [alert]);
+
   const fetchUsers = async () => {
     try {
       const response = await fetch(API_URL);
